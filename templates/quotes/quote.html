@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'view_quote_header' %} {{ object.title }}{% endblock %}
+{% block content %}
+    <div class="container text-center">
+        <h1>{{ object.title }}</h1>
+        <p>{{ object.full_text }}</p>
+        <p>{{ duration }}</p>
+        {% if my %}
+        <a href="{% url 'quotes:edit' pk=object.pk%}" class="btn btn-light me-2"
+           role="button">{% trans 'edit_quote' %}</a>
+        <a href="{% url 'quotes:delete' pk=object.pk%}" class="btn btn-light me-2 opacity-75 "
+           role="button">{% trans 'delete_quote' %}</a>
+    {% endif %}
+    </div>
+{% endblock %}

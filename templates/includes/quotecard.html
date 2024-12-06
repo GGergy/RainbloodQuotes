@@ -1,0 +1,22 @@
+{% load thumbnail %}
+<a href="{% url 'quotes:by_id' pk=quote.id %}">
+    <div class="col-auto align-center card card-inverse mx-2 position-relative">
+
+        {% thumbnail quote.video.preview "640x480" crop="center" as im %}
+            <img src="{{ im.url }}" alt="" width="100%" height="240"
+                 class="bd-placeholder-img card-img-top rounded opacity-50">
+        {% endthumbnail %}
+        <div class="shadow-lg rounded-2"
+             style="position: absolute; top: 45%; left: 1.25%; width: 97%; background-color: rgba(20, 20, 20, 0.9)">
+            <h4 class="text-center">{{ quote.title|truncatechars:30 }}</h4>
+        </div>
+        <div class="d-flex justify-content-end"
+             style="position: absolute; top: 85%; width: 100%">
+            {% with quote.rating as rt %}
+                <h5 class="pe-2"
+                    style="color: {% if rt < 0 %} red {% elif rt == 0 %} white {% else %} green{% endif %}">
+                    {% if rt > 0 %}+{% endif %}{{ rt }}</h5>
+            {% endwith %}
+        </div>
+    </div>
+</a>

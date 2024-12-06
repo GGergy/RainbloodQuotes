@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load thumbnail %}
+{% block title %}{% trans 'profile_view' %} {{ user.username }}{% endblock %}
+{% block content %}
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center">
+            <div class="col col-lg-9 col-xl-8">
+                <div class="card">
+                    <div class="rounded-top text-white d-flex flex-row "
+                         style="background-image: url({% static 'img/bnr.png' %});">
+                        <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+                            {% if profile.profile.image %}
+                                {% thumbnail profile.profile.image "150x150" crop="center" as im %}
+                                    <img src="{{ im.url }}" alt="..."
+                                         class="img-fluid img-thumbnail mt-4 mb-2"
+                                         style="width: 150px; z-index: 1">
+                                {% endthumbnail %}
+                            {% else %}
+                                <img src="{% static 'img/default_avatar.png' %}" alt="..."
+                                     class="img-fluid img-thumbnail mt-4 mb-2"
+                                     style="width: 150px; z-index: 1">
+                            {% endif %}
+                        </div>
+                        <div class="ms-3"
+                             style="margin-top: {% if profile.first_name or profile.last_name %}100px{% else %}130px{% endif %}">
+                            <h5>{{ profile.username }}</h5>
+                            <p>
+                                {% if profile.first_name %}
+                                    <span>{{ profile.first_name }} </span>
+                                {% endif %}
+                                {% if profile.last_name %}
+                                    <span>{{ profile.last_name }} </span>
+                                {% endif %}
+                            </p>
+                            {% if my %}
+                                <div class="d-flex justify-content-around mt-auto">
+                                    <a href="#" class="btn btn-light me-2 opacity-75"
+                                       role="button">{% trans 'b_favourites' %}</a>
+                                    <a href="{% url 'users:profile_edit' %}" class="btn btn-dark me-2 "
+                                       role="button">{% trans 'edit_profile' %}</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="d-flex text-center text-body align-self-end py-3 ms-auto">
+                            <div>
+                                <p class="mb-1 h5 text-white">{{ num_quotes }}</p>
+                                <p class="small mb-0 text-white">{% trans 'quotes_created' %}</p>
+                            </div>
+                            <div class="px-3">
+                                <p class="mb-1 h5 text-white">{{ num_fav }}</p>
+                                <p class="small mb-0 text-white">{% trans 'favourites_plural' %}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body p-4 text-black">
+                        {% if profile.profile.birthday or profile.profile.about %}
+                            <div class="mb-5  text-body">
+                                <div class="p-4 bg-body-tertiary rounded-2">
+                                    {% if profile.profile.birthday %}
+                                        <p class="mb-1">{% trans 'birthday' %}: {{ profile.profile.birthday }}</p>
+                                    {% endif %}
+                                    {% if profile.profile.about %}
+                                        <p class="mb-1">{% trans 'about' %}: {{ profile.profile.about }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if quotes %}
+                            <div class="d-flex justify-content-between align-items-center mb-4 text-body">
+                                <p class="lead fw-normal mb-0">{% trans 'quotes_plural' %}</p>
+                                <p class="mb-0"><a href="#" class="text-muted">{% trans "show_all" %}</a></p>
+                            </div>
+                            <div class="album py-5">
+                                <div class="container">
+                                    <div class="row row-cols-auto align-center g-3 justify-content-center d-flex">
+                                        {% for quote in quotes %}
+                                            {% include 'includes/quotecard.html' %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

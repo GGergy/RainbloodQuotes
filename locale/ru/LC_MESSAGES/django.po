@@ -1,0 +1,333 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-06 23:09+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\quotes\forms.py:8
+msgid "time"
+msgstr "Время"
+
+#: .\quotes\models.py:70
+msgid "like"
+msgstr "Лайк"
+
+#: .\quotes\models.py:71
+msgid "dislike"
+msgstr "Дизлайк"
+
+#: .\quotes\views.py:36
+msgid "quote_created"
+msgstr "Цитата создана"
+
+#: .\quotes\views.py:70
+msgid "quote_updated"
+msgstr "Цитата обновлена"
+
+#: .\quotes\views.py:78
+msgid "quote_deleted"
+msgstr "Цитата удалена"
+
+#: .\rainblood_quotes\settings.py:121
+msgid "en"
+msgstr "Английский"
+
+#: .\rainblood_quotes\settings.py:122
+msgid "ru"
+msgstr "Русский"
+
+#: .\templates\base.html:33
+msgid "notify"
+msgstr "Уведомление"
+
+#: .\templates\includes\footer.html:3
+msgid "footer"
+msgstr "Никаких прав не соблюдено, проект фанатский"
+
+#: .\templates\includes\header.html:11 .\templates\index.html:3
+msgid "home"
+msgstr "Главная"
+
+#: .\templates\includes\header.html:14
+msgid "overview"
+msgstr "Поиск"
+
+#: .\templates\includes\header.html:18
+msgid "create_quote"
+msgstr "Создать"
+
+#: .\templates\includes\header.html:21 .\templates\users\profile.html:7
+msgid "profile"
+msgstr "Профиль"
+
+#: .\templates\includes\header.html:26
+msgid "auth"
+msgstr "Аутентификация"
+
+#: .\templates\includes\header.html:29 .\templates\users\login.html:4
+msgid "login"
+msgstr "Вход"
+
+#: .\templates\includes\header.html:30 .\templates\users\signup.html:4
+msgid "signup"
+msgstr "Регистрация"
+
+#: .\templates\includes\header.html:31 .\templates\users\password_reset.html:3
+msgid "passreset"
+msgstr "Сброс пароля"
+
+#: .\templates\includes\header.html:36
+msgid "logout"
+msgstr "Выход"
+
+#: .\templates\includes\header.html:40 .\templates\users\password_change.html:3
+msgid "passchange"
+msgstr "Смена пароля"
+
+#: .\templates\includes\header.html:45
+msgid "admin"
+msgstr "Администрация"
+
+#: .\templates\index.html:7
+msgid "welcome"
+msgstr "Добро пожаловать!"
+
+#: .\templates\quotes\confirm_delete.html:4
+msgid "delete_quote_header"
+msgstr "Удаление цитаты"
+
+#: .\templates\quotes\confirm_delete.html:7
+msgid "quote_delete_text"
+msgstr "Вы точно хотите удалить эту цитату?"
+
+#: .\templates\quotes\confirm_delete.html:14
+msgid "b_delete_quote"
+msgstr "Удалить"
+
+#: .\templates\quotes\confirm_delete.html:15
+msgid "back"
+msgstr "Назад"
+
+#: .\templates\quotes\create.html:3
+msgid "create_quote_header"
+msgstr "Создание цитаты"
+
+#: .\templates\quotes\quote.html:3
+msgid "view_quote_header"
+msgstr "Цитата"
+
+#: .\templates\quotes\quote.html:11
+msgid "edit_quote"
+msgstr "Редактировать"
+
+#: .\templates\quotes\quote.html:13
+msgid "delete_quote"
+msgstr "Удалить"
+
+#: .\templates\quotes\update.html:3
+msgid "update_quote_header"
+msgstr "Изменение цитаты"
+
+#: .\templates\search\overview.html:4
+msgid "overview_header"
+msgstr "Поиск"
+
+#: .\templates\search\overview.html:18
+msgid "order by"
+msgstr "Сортировка"
+
+#: .\templates\search\overview.html:19
+
+msgid "time_created_new"
+msgstr "Сначала новые"
+
+#: .\templates\search\overview.html:20
+msgid "time_created_old"
+msgstr "Сначала старые"
+
+#: .\templates\search\overview.html:21
+msgid "best_rated"
+msgstr "Сначала лучшие"
+
+#: .\templates\search\overview.html:22
+msgid "worst_rated"
+msgstr "Сначала худшие"
+
+#: .\templates\search\overview.html:29
+msgid "video"
+msgstr "Видео"
+
+#: .\templates\users\login.html:7
+msgid "login_text"
+msgstr "Вход"
+
+#: .\templates\users\login.html:11
+msgid "login_button"
+msgstr "Войти"
+
+#: .\templates\users\login.html:12
+msgid "forgot_password"
+msgstr "Забыли пароль?"
+
+#: .\templates\users\password_change_done.html:3
+msgid "passchange_done"
+msgstr "Изменение пароля"
+
+#: .\templates\users\password_change_done.html:6
+msgid "passchanged"
+msgstr "Пароль изменен"
+
+#: .\templates\users\password_reset_complete.html:3
+msgid "passreset_complete"
+msgstr "Сброс пароля"
+
+#: .\templates\users\password_reset_complete.html:6
+msgid "passreseted"
+msgstr "Пароль сброшен"
+
+#: .\templates\users\password_reset_confirm.html:3
+msgid "confirm_reset"
+msgstr "Подтвердить"
+
+#: .\templates\users\password_reset_done.html:3
+msgid "passreset_done"
+msgstr "Сброс пароля"
+
+#: .\templates\users\password_reset_done.html:6
+msgid "passreset_done_text"
+msgstr "Инструкции по восстановлению отправлены вам на почту"
+
+#: .\templates\users\profile.html:4
+msgid "profile_edit"
+msgstr "Настройка профиля"
+
+#: .\templates\users\profile.html:12
+msgid "submit"
+msgstr "Сохранить"
+
+#: .\templates\users\signup.html:7
+msgid "signup_text"
+msgstr "Регистрация"
+
+#: .\templates\users\signup.html:11
+msgid "signup_button"
+msgstr "Зарегистрироваться"
+
+#: .\templates\users\user.html:5
+msgid "profile_view"
+msgstr "Профиль"
+
+#: .\templates\users\user.html:40
+msgid "b_favourites"
+msgstr "Избранное"
+
+#: .\templates\users\user.html:42
+msgid "edit_profile"
+msgstr "Настроить"
+
+#: .\templates\users\user.html:49
+msgid "quotes_created"
+msgstr "Создано"
+
+#: .\templates\users\user.html:53
+msgid "favourites_plural"
+msgstr "Избранное"
+
+#: .\templates\users\user.html:63
+msgid "birthday"
+msgstr "День рождения"
+
+#: .\templates\users\user.html:66
+msgid "about"
+msgstr "О пользователе"
+
+#: .\templates\users\user.html:73
+msgid "quotes_plural"
+msgstr "Цитаты пользователя"
+
+#: .\templates\users\user.html:74
+msgid "show_all"
+msgstr "Показать все"
+
+#: .\users\forms.py:13
+msgid "email_or_username"
+msgstr "Имя пользователя или пароль"
+
+#: .\users\views.py:23
+msgid "logout_success"
+msgstr "Успешный выход"
+
+#: .\users\views.py:29
+msgid "login_success"
+msgstr "Успешный вход"
+
+#: .\users\views.py:48
+msgid "user_created"
+msgstr "Вы зарегистрировались. Для активации перейдите по ссылке в письме"
+
+#: .\users\views.py:70
+msgid "profile_updated"
+msgstr "Профиль обновлен"
+
+#: .\users\views.py:87
+msgid "bad_activate_link"
+msgstr "Некорректная ссылка активации"
+
+#: .\users\views.py:91
+msgid "user_is_active"
+msgstr "Аккаунт уже активирован"
+
+#: .\users\views.py:94
+msgid "account_activated"
+msgstr "Аккаунт активирован"
+
+msgid "This account is inactive."
+msgstr "Аккаунт не активирован. Активируйте его по ссылке в письме, которое пришло на почту, указанную при регистрации"
+
+msgid "create_quote_text"
+msgstr "Создание цитаты"
+
+msgid "b_create_quote"
+msgstr "Создать"
+
+msgid "update_quote_text"
+msgstr "Редактирование цитаты"
+
+msgid "b_update_quote"
+msgstr "Сохранить"
+
+msgid "passchange_text"
+msgstr "Изменение пароля"
+
+msgid "passchange_button"
+msgstr "Изменить"
+
+msgid "passreset_text"
+msgstr "Сброс пароля"
+
+msgid "passreset_button"
+msgstr "Сбросить"
+
+msgid "confirm_reset_text"
+msgstr "Подтверждение сброса"
+
+msgid "confirm_reset_button"
+msgstr "Сохранить"
+
+msgid "search_text"
+msgstr "Цитата"

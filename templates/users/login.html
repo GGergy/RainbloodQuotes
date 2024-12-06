@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load i18n %}
+{% block title %}{% trans 'login' %}{% endblock %}
+{% block content %}
+    <div class="container">
+        <h2 class="py-3 text-center m-3">{% trans "login_text" %}</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-primary" type="submit">{% trans "login_button" %}</button>
+            <a href="{% url 'users:password_reset' %}" class="btn btn-secondary m-2 opacity-75" role="button">{% trans 'forgot_password' %}</a>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load i18n %}
+{% block title %}{% trans 'profile_edit' %}{% endblock %}
+{% block content %}
+<div class="container">
+	<h2 class="py-3">{% trans 'profile' %}</h2>
+	<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ user_form|crispy }}
+    {{ profile_form|crispy }}
+    <button class="btn btn-primary" type="submit">{% trans 'submit' %}</button>
+  </form>
+</div>
+{% endblock %}

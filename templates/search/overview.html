@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load i18n %}
+{% block title %}{% trans 'overview_header' %}{% endblock %}
+{% load static %}
+{% block content %}
+    <div class="container d-flex align-content-center">
+        <div class="input-group">
+            <input type="search" class="form-control rounded" placeholder={% trans 'search_text' %} aria-label={% trans 'search_text' %} id="quote_text"
+                   onkeypress="handle(event)"/>
+            <button type="button" id="search_button" class="btn btn-outline-primary"><img
+                    src="{% static 'img/search.svg' %}" alt="..."
+                    class="search-label-icon" width="30"></button>
+        </div>
+        <div class="ms-3">
+            <label>
+                <select class="form-select" id="order_by">
+                    <option selected value="">{% trans 'order by' %}ㅤㅤㅤㅤㅤㅤㅤㅤ</option>
+                    <option value="-created_at">{% trans 'time_created_new' %}</option>
+                    <option value="created_at">{% trans 'time_created_old' %}</option>
+                    <option value="-rating">{% trans 'best_rated' %}</option>
+                    <option value="rating">{% trans 'worst_rated' %}</option>
+                </select>
+            </label>
+        </div>
+        <div class="ms-3">
+            <label>
+                <select class="form-select" id="video">
+                    <option selected value="">{% trans 'video' %}ㅤㅤㅤㅤㅤㅤㅤㅤ</option>
+                    {% for video in videos %}
+                        <option value="{{ video.id }}">{{ video.title }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+    </div>
+    <script>
+        let order_by = document.getElementById('order_by')
+        let video = document.getElementById("video")
+        let text = document.getElementById("quote_text")
+        if ("{{ text_val }}") {
+            text.value = "{{ text_val }}"
+        }
+        if ({{ video_val }}) {
+            video.value = {{ video_val }}
+        }
+        if ("{{ order_by_val }}") {
+            order_by.value = "{{ order_by_val }}"
+        }
+
+        let button = document.getElementById('search_button')
+
+        function handle(e) {
+            console.log(e)
+            if (e.keyCode === 13) {
+                e.preventDefault()
+                on_click()
+            }
+        }
+
+        function on_click() {
+            let url = "{% url 'search:by' %}"
+            let params = new URLSearchParams({
+                "order_by": order_by.value,
+                "video": video.value,
+                "text": text.value
+            }).toString()
+            window.location.href = url + "?" + params
+        }
+
+        button.addEventListener("click", on_click)
+    </script>
+    <div class="album py-5">
+        <div class="container">
+            <div class="row row-cols-auto align-center g-3 justify-content-center">
+                {% for quote in object_list %}
+                    {% include 'includes/quotecard.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
