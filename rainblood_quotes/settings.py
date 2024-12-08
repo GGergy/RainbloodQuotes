@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
-
 from django.utils.translation import gettext_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,8 +27,7 @@ SECRET_KEY = 'django-insecure-se(_w@s0h8!10n&qw^ht*+-342#7ktdne#02_ni)w2kh_vqipe
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-load_dotenv()
-DEBUG = os.getenv('DEBUG').lower() in ["true", "yes", "1", "y"]
+DEBUG = os.path.exists(".dev")
 
 ALLOWED_HOSTS = ["*"]
 INTERNAL_IPS = (
@@ -44,7 +41,6 @@ INSTALLED_APPS = [
     'search.apps.SearchConfig',
     'users.apps.UsersConfig',
     'quotes.apps.QuotesConfig',
-    'rating.apps.RatingConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

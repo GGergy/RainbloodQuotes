@@ -34,7 +34,7 @@ class Video(models.Model):
 
 class QuoteObjectManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().prefetch_related("rate").annotate(rating=models.Sum("rate__value"))
+        return super().get_queryset().prefetch_related("rate").annotate(rating=models.Sum("rate__value", default=0))
 
 
 class Quote(models.Model):
