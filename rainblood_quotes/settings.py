@@ -10,7 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
 
 from django.utils.translation import gettext_lazy
 
@@ -25,9 +28,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-se(_w@s0h8!10n&qw^ht*+-342#7ktdne#02_ni)w2kh_vqipe'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+load_dotenv()
+DEBUG = os.getenv('DEBUG').lower() in ["true", "yes", "1", "y"]
 
 ALLOWED_HOSTS = ["*"]
+INTERNAL_IPS = (
+    '127.0.0.1',
+)
 
 
 # Application definition

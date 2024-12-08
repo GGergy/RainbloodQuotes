@@ -1,5 +1,6 @@
 import datetime
 
+from django.core.exceptions import PermissionDenied
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -29,9 +30,9 @@ class CreateQuoteView(FormView, LoginRequiredMixin):
         form = self.get_form()
         if form.is_valid():
             obj = self.model.objects.create(author=self.request.user, video=form.cleaned_data['video'],
-                                      title=form.cleaned_data['title'],
-                                      full_text=form.cleaned_data['full_text'],
-                                      time=to_seconds(form.cleaned_data['time']))
+                                            title=form.cleaned_data['title'],
+                                            full_text=form.cleaned_data['full_text'],
+                                            time=to_seconds(form.cleaned_data['time']))
             self.success_url = reverse_lazy("quotes:by_id", args=[obj.id])
             messages.success(self.request, _("quote_created"))
         return super().post(request, *args, **kwargs)
@@ -54,6 +55,12 @@ class EditQuoteView(LoginRequiredMixin, UpdateView):
     template_name = "quotes/update.html"
     success_url = reverse_lazy("index")
 
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.author != self.request.user:
+            raise PermissionDenied()
+        return obj
+
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         if hasattr(self, "object"):
@@ -73,7 +80,12 @@ class EditQuoteView(LoginRequiredMixin, UpdateView):
 
 class DeleteQuoteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Quote
-    success_url = reverse_lazy("index")
+    success_url = reverse_lazy("search:overview")
     template_name = "quotes/confirm_delete.html"
     success_message = _("quote_deleted")
-    # Поменять на search:by_user когда будет search
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.author != self.request.user:
+            raise PermissionDenied()
+        return obj
