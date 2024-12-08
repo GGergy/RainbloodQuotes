@@ -331,3 +331,6 @@ msgstr "Сохранить"
 
 msgid "search_text"
 msgstr "Цитата"
+
+msgid "source_link"
+msgstr "Ссылка на фрагмент"

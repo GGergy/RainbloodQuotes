@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
 ]
 
+INSTALLED_APPS += ['django_cleanup.apps.CleanupConfig',]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

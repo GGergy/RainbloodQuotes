@@ -6,6 +6,8 @@
         <h1>{{ object.title }}</h1>
         <p>{{ object.full_text }}</p>
         <p>{{ duration }}</p>
+        <a href="{{ quote.video.url }}&t={{ quote.time }}s" class="btn btn-light me-2"
+               role="button" target="_blank">{% trans 'source_link' %}</a>
         {% if my %}
         <a href="{% url 'quotes:edit' pk=object.pk%}" class="btn btn-light me-2"
            role="button">{% trans 'edit_quote' %}</a>
