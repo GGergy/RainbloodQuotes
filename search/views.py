@@ -1,5 +1,7 @@
 from typing import Any
 
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
 
 from quotes.models import Quote, Video, simplify
@@ -42,6 +44,9 @@ class SearchView(Overview):
         context["order_by_val"] = self.param("order_by", "")
         context["video_val"] = self.param("video", 0)
         context["author"] = self.param("author", "")
+        if context["author"]:
+            context["author_uname"] = get_object_or_404(User.objects.only("username"), id=int(context["author"])).username
+            print(context["author_uname"])
         return context
 
 

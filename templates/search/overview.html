@@ -7,14 +7,14 @@
     {% if author %}
         <div class="d-flex justify-content-center text-center">
             <div class="alert alert-success alert-dismissible" role="alert">
-                <strong>{% trans 'you_watching_user' %} {{ user.username }}</strong>
+                <strong>{% trans 'you_watching_user' %} {{ author_uname }}</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="remove_author()"></button>
             </div>
         </div>
     {% endif %}
     <div class="container d-flex align-content-center">
         <div class="input-group">
-            <input type="search" class="form-control rounded"
+            <input type="search" class="form-control rounded-start"
                    placeholder={% trans 'search_text' %} aria-label={% trans 'search_text' %} id="quote_text"
                    onkeypress="handle(event)"/>
             <button type="button" id="search_button" class="btn btn-outline-primary"><img

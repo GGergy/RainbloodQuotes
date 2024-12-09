@@ -47,7 +47,7 @@ class QuoteDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["my"] = self.get_object().author.pk == self.request.user.pk
         context["duration"] = from_seconds(self.get_object().time)
-        context["reaction"] = Rate.objects.filter(quote=self.get_object(), user=self.request.user).first()
+        context["reaction"] = Rate.objects.filter(quote=self.get_object(), user=self.request.user.id).first()
         return context
 
 

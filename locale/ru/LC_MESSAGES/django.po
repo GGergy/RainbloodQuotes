@@ -237,7 +237,7 @@ msgstr "Пароль сброшен"
 
 #: .\templates\users\password_reset_confirm.html:3
 msgid "confirm_reset"
-msgstr "Подтвердить"
+msgstr "Подтверждение сброса"
 
 #: .\templates\users\password_reset_done.html:3
 msgid "passreset_done"
@@ -371,3 +371,6 @@ msgstr "Ссылка на фрагмент"
 
 msgid "filesize_limit_increased"
 msgstr "Превышен допустимый размер файла"
+
+msgid "author"
+msgstr "Автор"

@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 {% load thumbnail %}
-{% block title %}{% trans 'profile_view' %} {{ user.username }}{% endblock %}
+{% block title %}{% trans 'profile_view' %} {{ profile.username }}{% endblock %}
 {% block content %}
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center">
@@ -71,7 +71,7 @@
                         {% if quotes %}
                             <div class="d-flex justify-content-between align-items-center mb-4 text-body">
                                 <p class="lead fw-normal mb-0">{% trans 'quotes_plural' %}</p>
-                                <p class="mb-0"><a href="{% url 'search:by' %}?author={{ user.pk }}" class="text-muted">{% trans "show_all" %}</a></p>
+                                <p class="mb-0"><a href="{% url 'search:by' %}?author={{ profile.pk }}" class="text-muted">{% trans "show_all" %}</a></p>
                             </div>
                             <div class="album py-5">
                                 <div class="container">

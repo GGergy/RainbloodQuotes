@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load thumbnail %}
 {% load static %}
 {% load i18n %}
 {% block title %}{% trans 'view_quote_header' %} {{ object.title }}{% endblock %}
@@ -62,6 +63,22 @@
                         </a>
                         {% csrf_token %}
                     </form>
+                </div>
+                <div class="mt-4">
+                    <a href="{% url 'users:profile' username=quote.author.username %}" class="text-decoration-none text-reset">
+                    <h4 class="">{% trans 'author' %}: {{ quote.author.username }}</h4>
+                    {% if quote.author.profile.image %}
+                        {% thumbnail quote.author.profile.image "150x150" crop="center" as im %}
+                            <img src="{{ im.url }}" alt="..."
+                                 class="img-fluid img-thumbnail mb-2"
+                                 style="width: 150px; z-index: 1">
+                        {% endthumbnail %}
+                    {% else %}
+                        <img src="{% static 'img/default_avatar.png' %}" alt="..."
+                             class="img-fluid img-thumbnail mb-2"
+                             style="width: 150px; z-index: 1">
+                    {% endif %}
+                    </a>
                 </div>
             </div>
 
