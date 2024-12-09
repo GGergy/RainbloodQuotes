@@ -20,7 +20,7 @@ def simplify(item: str) -> str:
 
 
 class Video(models.Model):
-    url = models.URLField()
+    youtube_id = models.CharField(max_length=50)
     title = models.CharField(max_length=100)
     preview = models.ImageField(upload_to='uploads/videos/')
 
@@ -39,8 +39,8 @@ class QuoteObjectManager(models.Manager):
 
 class Quote(models.Model):
     objects = QuoteObjectManager()
-    title = models.CharField(max_length=200, verbose_name="заголовок")
-    full_text = models.TextField(verbose_name="полный текст")
+    title = models.CharField(max_length=100, verbose_name="заголовок")
+    full_text = models.TextField(verbose_name="полный текст", max_length=1000)
     time = models.PositiveIntegerField(verbose_name="временная метка")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='quotes', verbose_name="автор")
     video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name='quotes', verbose_name="видео")

@@ -168,6 +168,8 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'projectrainbloodquotes@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
+MAX_FILE_SIZE_MB = 4
+
 """LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

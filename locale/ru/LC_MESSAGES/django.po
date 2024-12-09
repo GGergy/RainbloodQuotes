@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-06 23:09+0300\n"
+"POT-Creation-Date: 2024-12-09 22:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,27 +31,43 @@ msgstr "Лайк"
 msgid "dislike"
 msgstr "Дизлайк"
 
-#: .\quotes\views.py:36
+#: .\quotes\views.py:38
 msgid "quote_created"
 msgstr "Цитата создана"
 
-#: .\quotes\views.py:70
+#: .\quotes\views.py:79
 msgid "quote_updated"
 msgstr "Цитата обновлена"
 
-#: .\quotes\views.py:78
+#: .\quotes\views.py:87
 msgid "quote_deleted"
 msgstr "Цитата удалена"
 
-#: .\rainblood_quotes\settings.py:121
+#: .\quotes\views.py:97 .\quotes\views.py:112 .\quotes\views.py:115
+msgid "reaction_set"
+msgstr "Реакция установлена"
+
+#: .\quotes\views.py:108
+msgid "reaction_removed"
+msgstr "Реакция удалена"
+
+#: .\quotes\views.py:124
+msgid "fav_set"
+msgstr "Добавлено в избранное"
+
+#: .\quotes\views.py:127
+msgid "fav_removed"
+msgstr "Удалено из избранного"
+
+#: .\rainblood_quotes\settings.py:127
 msgid "en"
 msgstr "Английский"
 
-#: .\rainblood_quotes\settings.py:122
+#: .\rainblood_quotes\settings.py:128
 msgid "ru"
 msgstr "Русский"
 
-#: .\templates\base.html:33
+#: .\templates\base.html:47
 msgid "notify"
 msgstr "Уведомление"
 
@@ -127,15 +143,19 @@ msgstr "Назад"
 msgid "create_quote_header"
 msgstr "Создание цитаты"
 
-#: .\templates\quotes\quote.html:3
+#: .\templates\quotes\quote.html:4
 msgid "view_quote_header"
 msgstr "Цитата"
 
-#: .\templates\quotes\quote.html:11
+#: .\templates\quotes\quote.html:6
+msgid "quote_overview"
+msgstr "Обзор цитаты"
+
+#: .\templates\quotes\quote.html:22
 msgid "edit_quote"
 msgstr "Редактировать"
 
-#: .\templates\quotes\quote.html:13
+#: .\templates\quotes\quote.html:24
 msgid "delete_quote"
 msgstr "Удалить"
 
@@ -143,32 +163,47 @@ msgstr "Удалить"
 msgid "update_quote_header"
 msgstr "Изменение цитаты"
 
+#: .\templates\search\fav.html:3
+msgid "fav_title"
+msgstr "Ваше избранное"
+
+#: .\templates\search\fav.html:5
+msgid "fav_header"
+msgstr "Ваше избранное"
+
 #: .\templates\search\overview.html:4
 msgid "overview_header"
 msgstr "Поиск"
 
+#: .\templates\search\overview.html:10
+msgid "you_watching_user"
+msgstr "Вы просматриваете цитаты пользователя"
+
 #: .\templates\search\overview.html:18
+msgid "search_text"
+msgstr "Цитата"
+
+#: .\templates\search\overview.html:27
 msgid "order by"
 msgstr "Сортировка"
 
-#: .\templates\search\overview.html:19
-
+#: .\templates\search\overview.html:28
 msgid "time_created_new"
 msgstr "Сначала новые"
 
-#: .\templates\search\overview.html:20
+#: .\templates\search\overview.html:29
 msgid "time_created_old"
 msgstr "Сначала старые"
 
-#: .\templates\search\overview.html:21
+#: .\templates\search\overview.html:30
 msgid "best_rated"
 msgstr "Сначала лучшие"
 
-#: .\templates\search\overview.html:22
+#: .\templates\search\overview.html:31
 msgid "worst_rated"
 msgstr "Сначала худшие"
 
-#: .\templates\search\overview.html:29
+#: .\templates\search\overview.html:38
 msgid "video"
 msgstr "Видео"
 
@@ -297,7 +332,9 @@ msgid "account_activated"
 msgstr "Аккаунт активирован"
 
 msgid "This account is inactive."
-msgstr "Аккаунт не активирован. Активируйте его по ссылке в письме, которое пришло на почту, указанную при регистрации"
+msgstr ""
+"Аккаунт не активирован. Активируйте его по ссылке в письме, которое "
+"пришло на почту, указанную при регистрации"
 
 msgid "create_quote_text"
 msgstr "Создание цитаты"
@@ -329,8 +366,8 @@ msgstr "Подтверждение сброса"
 msgid "confirm_reset_button"
 msgstr "Сохранить"
 
-msgid "search_text"
-msgstr "Цитата"
-
 msgid "source_link"
 msgstr "Ссылка на фрагмент"
+
+msgid "filesize_limit_increased"
+msgstr "Превышен допустимый размер файла"

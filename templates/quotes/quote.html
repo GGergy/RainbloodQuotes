@@ -1,18 +1,71 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load i18n %}
 {% block title %}{% trans 'view_quote_header' %} {{ object.title }}{% endblock %}
 {% block content %}
-    <div class="container text-center">
-        <h1>{{ object.title }}</h1>
-        <p>{{ object.full_text }}</p>
-        <p>{{ duration }}</p>
-        <a href="{{ quote.video.url }}&t={{ quote.time }}s" class="btn btn-light me-2"
-               role="button" target="_blank">{% trans 'source_link' %}</a>
-        {% if my %}
-        <a href="{% url 'quotes:edit' pk=object.pk%}" class="btn btn-light me-2"
-           role="button">{% trans 'edit_quote' %}</a>
-        <a href="{% url 'quotes:delete' pk=object.pk%}" class="btn btn-light me-2 opacity-75 "
-           role="button">{% trans 'delete_quote' %}</a>
-    {% endif %}
+    <h1 class="text-center">{% trans 'quote_overview' %}</h1>
+    <div class="container mt-5">
+
+        <div class="row">
+            <div class="col">
+                <iframe width="750px" height="500px" class="rounded-3"
+                        src="https://www.youtube.com/embed/{{ quote.video.youtube_id }}?start={{ quote.time }}"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <div class="col">
+                <h3 class="">{{ quote.title|capfirst }}</h3>
+                <p class="fs-5">{{ object.full_text|capfirst }}</p>
+                {% if my %}
+                    <a href="{% url 'quotes:edit' pk=object.pk %}" class="btn btn-light me-2"
+                       role="button">{% trans 'edit_quote' %}</a>
+                    <a href="{% url 'quotes:delete' pk=object.pk %}" class="btn btn-light me-2 opacity-75 "
+                       role="button">{% trans 'delete_quote' %}</a>
+                {% endif %}
+                <div class="d-flex justify-content-start mt-3">
+                    <form id="like-form" action="{% url 'quotes:set_reaction' pk=object.pk reaction=1 %}" method="post"
+                          class="rounded-start" style="background-color: rgba(20, 20, 20, 0.5)">
+                        <a href="" onclick="document.getElementById('like-form').submit(); return false;"
+                           class="">
+                            {% if reaction and reaction.value == reaction.Values.like %}
+                                <img src="{% static 'img/like-active.svg' %}" alt="" width="50">
+                            {% else %}
+                                <img src="{% static 'img/like.svg' %}" alt="" width="50">
+                            {% endif %}
+                        </a>
+                        {% csrf_token %}
+                    </form>
+                    <form id="dislike-form" action="{% url 'quotes:set_reaction' pk=object.pk reaction=0 %}"
+                          method="post" style="background-color: rgba(20, 20, 20, 0.5)"
+                          class="">
+                        <a href="" onclick="document.getElementById('dislike-form').submit(); return false;"
+                           class="">
+                            {% if reaction and reaction.value == reaction.Values.dislike %}
+                                <img src="{% static 'img/dislike-active.svg' %}" alt="" width="50">
+                            {% else %}
+                                <img src="{% static 'img/dislike.svg' %}" alt="" width="50">
+                            {% endif %}
+                        </a>
+                        {% csrf_token %}
+                    </form>
+                    <form id="fav-form" action="{% url 'quotes:favourite' pk=object.pk %}"
+                          method="post" style="background-color: rgba(20, 20, 20, 0.5)"
+                          class="rounded-end">
+                        <a href="" onclick="document.getElementById('fav-form').submit(); return false;"
+                           class="">
+                            {% if quote in user.profile.favourites.all %}
+                                <img src="{% static 'img/favourite-active.svg' %}" alt="" width="50">
+                            {% else %}
+                                <img src="{% static 'img/favourite.svg' %}" alt="" width="50">
+                            {% endif %}
+                        </a>
+                        {% csrf_token %}
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 {% endblock %}

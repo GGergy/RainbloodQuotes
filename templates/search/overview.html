@@ -4,9 +4,18 @@
 {% block title %}{% trans 'overview_header' %}{% endblock %}
 {% load static %}
 {% block content %}
+    {% if author %}
+        <div class="d-flex justify-content-center text-center">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <strong>{% trans 'you_watching_user' %} {{ user.username }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="remove_author()"></button>
+            </div>
+        </div>
+    {% endif %}
     <div class="container d-flex align-content-center">
         <div class="input-group">
-            <input type="search" class="form-control rounded" placeholder={% trans 'search_text' %} aria-label={% trans 'search_text' %} id="quote_text"
+            <input type="search" class="form-control rounded"
+                   placeholder={% trans 'search_text' %} aria-label={% trans 'search_text' %} id="quote_text"
                    onkeypress="handle(event)"/>
             <button type="button" id="search_button" class="btn btn-outline-primary"><img
                     src="{% static 'img/search.svg' %}" alt="..."
@@ -49,6 +58,7 @@
         }
 
         let button = document.getElementById('search_button')
+        let url = "{% url 'search:by' %}"
 
         function handle(e) {
             console.log(e)
@@ -59,11 +69,20 @@
         }
 
         function on_click() {
-            let url = "{% url 'search:by' %}"
             let params = new URLSearchParams({
                 "order_by": order_by.value,
                 "video": video.value,
-                "text": text.value
+                "text": text.value,
+                "author": "{{ author }}",
+            }).toString()
+            window.location.href = url + "?" + params
+        }
+        function remove_author()
+        {
+            let params = new URLSearchParams({
+                "order_by": order_by.value,
+                "video": video.value,
+                "text": text.value,
             }).toString()
             window.location.href = url + "?" + params
         }

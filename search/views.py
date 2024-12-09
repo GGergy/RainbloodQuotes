@@ -15,6 +15,7 @@ class Overview(ListView):
         context["text_val"] = ""
         context["order_by_val"] = ""
         context["video_val"] = 0
+        context["author"] = ""
         return context
 
 
@@ -31,6 +32,8 @@ class SearchView(Overview):
             queryset = queryset.filter(video__id=int(self.param("video")))
         if self.param("text"):
             queryset = queryset.filter(search_string__contains=simplify(self.param("text")))
+        if self.param("author"):
+            queryset = queryset.filter(author=int(self.param("author")))
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -38,4 +41,13 @@ class SearchView(Overview):
         context["text_val"] = self.param("text", "")
         context["order_by_val"] = self.param("order_by", "")
         context["video_val"] = self.param("video", 0)
+        context["author"] = self.param("author", "")
         return context
+
+
+class FavView(ListView):
+    model = Quote
+    template_name = "search/fav.html"
+
+    def get_queryset(self):
+        return self.request.user.profile.favourites.all()

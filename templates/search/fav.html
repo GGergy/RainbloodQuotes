@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans 'fav_title' %}{% endblock %}
+{% block content %}
+    <h1 class="text-center">{% trans 'fav_header' %}</h1>
+    <div class="album py-4">
+        <div class="container">
+            <div class="row row-cols-auto align-center g-3 justify-content-center">
+                {% for quote in object_list %}
+                    {% include 'includes/quotecard.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

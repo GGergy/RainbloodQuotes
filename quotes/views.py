@@ -1,15 +1,16 @@
 import datetime
 
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, BadRequest
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse_lazy, reverse
 from django.utils.translation import gettext as _
-from django.views.generic import DetailView, FormView, UpdateView, DeleteView
+from django.views.generic import DetailView, FormView, UpdateView, DeleteView, View
 
 from quotes.forms import QuoteForm
-from quotes.models import Quote
+from quotes.models import Quote, Rate
 
 
 def to_seconds(time: datetime.time):
@@ -46,6 +47,7 @@ class QuoteDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["my"] = self.get_object().author.pk == self.request.user.pk
         context["duration"] = from_seconds(self.get_object().time)
+        context["reaction"] = Rate.objects.filter(quote=self.get_object(), user=self.request.user).first()
         return context
 
 
@@ -89,3 +91,38 @@ class DeleteQuoteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
         if obj.author != self.request.user:
             raise PermissionDenied()
         return obj
+
+
+class SetReactionView(LoginRequiredMixin, View):
+    success_message = _("reaction_set")
+
+    def post(self, request, *args, **kwargs):
+        quote = get_object_or_404(Quote.objects.only("id"), pk=self.kwargs.get("pk"))
+        rate = Rate.objects.filter(quote__id=kwargs["pk"], user=self.request.user).first()
+        if self.kwargs.get("reaction") not in [0, 1]:
+            raise BadRequest()
+        value = Rate.Values.like if self.kwargs.get("reaction") == 1 else Rate.Values.dislike
+        if rate:
+            if rate.value == value:
+                rate.delete()
+                messages.success(self.request, _("reaction_removed"))
+            else:
+                rate.value = value
+                rate.save()
+                messages.success(self.request, _("reaction_set"))
+        else:
+            Rate.objects.create(quote=quote, value=value, user=self.request.user)
+            messages.success(self.request, _("reaction_set"))
+        return redirect(reverse("quotes:by_id", args=[quote.id]))
+
+
+class AddToFavouritesView(SuccessMessageMixin, LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        quote = get_object_or_404(Quote.objects.only("id"), pk=self.kwargs.get("pk"))
+        if quote not in request.user.profile.favourites.all():
+            request.user.profile.favourites.add(quote)
+            messages.success(self.request, _("fav_set"))
+        else:
+            request.user.profile.favourites.remove(quote)
+            messages.success(self.request, _("fav_removed"))
+        return redirect(reverse("quotes:by_id", args=[quote.id]))

@@ -36,7 +36,7 @@
                             </p>
                             {% if my %}
                                 <div class="d-flex justify-content-around mt-auto">
-                                    <a href="#" class="btn btn-light me-2 opacity-75"
+                                    <a href="{% url 'search:my_fav' %}" class="btn btn-light me-2 opacity-75"
                                        role="button">{% trans 'b_favourites' %}</a>
                                     <a href="{% url 'users:profile_edit' %}" class="btn btn-dark me-2 "
                                        role="button">{% trans 'edit_profile' %}</a>
@@ -71,7 +71,7 @@
                         {% if quotes %}
                             <div class="d-flex justify-content-between align-items-center mb-4 text-body">
                                 <p class="lead fw-normal mb-0">{% trans 'quotes_plural' %}</p>
-                                <p class="mb-0"><a href="#" class="text-muted">{% trans "show_all" %}</a></p>
+                                <p class="mb-0"><a href="{% url 'search:by' %}?author={{ user.pk }}" class="text-muted">{% trans "show_all" %}</a></p>
                             </div>
                             <div class="album py-5">
                                 <div class="container">
