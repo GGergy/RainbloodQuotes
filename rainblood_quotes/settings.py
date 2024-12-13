@@ -18,7 +18,6 @@ from django.utils.translation import gettext_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -27,13 +26,12 @@ SECRET_KEY = 'django-insecure-se(_w@s0h8!10n&qw^ht*+-342#7ktdne#02_ni)w2kh_vqipe
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = os.path.exists(".dev")
+DEBUG = os.path.exists(BASE_DIR / ".dev")
 
 ALLOWED_HOSTS = ["*"]
 INTERNAL_IPS = (
     '127.0.0.1',
 )
-
 
 # Application definition
 
@@ -47,12 +45,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'crispy_forms',
     'crispy_bootstrap5',
     'sorl.thumbnail',
 ]
 
-INSTALLED_APPS += ['django_cleanup.apps.CleanupConfig',]
+INSTALLED_APPS += ['django_cleanup.apps.CleanupConfig', ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,7 +84,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'rainblood_quotes.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -95,7 +93,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -114,7 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -136,7 +132,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -163,7 +158,7 @@ AUTHENTICATION_BACKENDS = (
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'projectrainbloodquotes@gmail.com'
-with open("psw") as rf:
+with open(BASE_DIR / "psw") as rf:
     EMAIL_HOST_PASSWORD = rf.read()
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'projectrainbloodquotes@gmail.com'

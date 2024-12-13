@@ -2,6 +2,7 @@ import re
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 from django.utils.translation import gettext_lazy as _
 
@@ -45,6 +46,7 @@ class Quote(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='quotes', verbose_name="автор")
     video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name='quotes', verbose_name="видео")
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     search_string = models.TextField(verbose_name="строка поиска")
 
     def full_clean(self, *args, **kwargs):
@@ -56,8 +58,11 @@ class Quote(models.Model):
             self.full_clean()
         return super().save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse("quotes:by_id", args=(self.id,))
+
     class Meta:
-        ordering = ['-created_at']
+        ordering = ("-id",)
         verbose_name = "Цитата"
         verbose_name_plural = "Цитаты"
 

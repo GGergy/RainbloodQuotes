@@ -65,6 +65,6 @@ urlpatterns = [
     ),
     path("signup/", users.views.signup, name="signup"),
     path("profile/edit/", users.views.update_profile, name="profile_edit"),
-    path("profile/<username>/", users.views.WatchProfileView.as_view(), name="profile"),
+    path("profiles/<username>/", users.views.WatchProfileView.as_view(), name="profile"),
     path("activate/<username>/", users.views.activate, name="activate"),
 ]

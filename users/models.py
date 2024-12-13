@@ -2,6 +2,7 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import User as DjangoUser
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from quotes.models import Quote
@@ -31,6 +32,11 @@ class Profile(models.Model):
         validators=[max_size_validator],
     )
     favourites = models.ManyToManyField(Quote, blank=True, related_name="favourites", verbose_name="избранное")
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = "Профиль"
+        ordering = ("-id",)
+
+    def get_absolute_url(self):
+        return reverse("users:profile", args=(self.user.username,))

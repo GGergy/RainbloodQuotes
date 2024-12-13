@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /users/
+Disallow: /search/my_fav/
+Disallow: /quotes/create/
+Disallow: /quotes/edit/
+Disallow: /quotes/delete/
+Allow: /users/profiles/
+
+Sitemap: {{ request.scheme }}://{{ request.get_host }}/sitemap.xml/
