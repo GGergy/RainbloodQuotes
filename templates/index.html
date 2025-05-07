@@ -23,33 +23,35 @@
             <p>А так, развлекайся, тыкай кнопки, добавляй цитаты. Буду стараться поддерживать сайт и вовремя загружать
                 новые видео</p>
         </div>
-        <div class="container img-fluid mt-5 img-fluid" style="width: 20%">
-            <div id="QuoteCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    {% for quote in quotes %}
-                        <button type="button" data-bs-target="#carouselExampleIndicators"
-                                data-bs-slide-to="{{ forloop.counter|add:-1 }}"
-                                class="active" aria-current="true" aria-label="Slide {{ forloop.counter }}">
-                        </button>
-                    {% endfor %}
+        <div class="container d-flex justify-content-center">
+            <div class="img-fluid mt-5 col-lg-4 col-sm-7">
+                <div id="QuoteCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        {% for quote in quotes %}
+                            <button type="button" data-bs-target="#carouselExampleIndicators"
+                                    data-bs-slide-to="{{ forloop.counter|add:-1 }}"
+                                    class="active" aria-current="true" aria-label="Slide {{ forloop.counter }}">
+                            </button>
+                        {% endfor %}
+                    </div>
+                    <div class="carousel-inner">
+                        {% for quote in quotes %}
+                            <div class="carousel-item{% if forloop.first %} active{% endif %} m">
+                                {% include 'includes/quotecard.html' %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#QuoteCarousel"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#QuoteCarousel"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-                <div class="carousel-inner">
-                    {% for quote in quotes %}
-                        <div class="carousel-item{% if forloop.first %} active{% endif %} m">
-                            {% include 'includes/quotecard.html' %}
-                        </div>
-                    {% endfor %}
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#QuoteCarousel"
-                        data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#QuoteCarousel"
-                        data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
     </div>
