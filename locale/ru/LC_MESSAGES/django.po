@@ -121,7 +121,7 @@ msgstr "Администрация"
 
 #: .\templates\index.html:7
 msgid "welcome"
-msgstr "Добро пожаловать!"
+msgstr "Привет, танкист!"
 
 #: .\templates\quotes\confirm_delete.html:4
 msgid "delete_quote_header"
@@ -374,3 +374,6 @@ msgstr "Превышен допустимый размер файла"
 
 msgid "author"
 msgstr "Автор"
+
+msgid "homepage_text"
+msgstr "Ты попал на замечательный сайт, который хранит цитаты великого контентмейкера танкового болота"

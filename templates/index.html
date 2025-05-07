@@ -3,7 +3,54 @@
 {% block title %}{% trans 'home' %}{% endblock %}
 {% load static %}
 {% block content %}
-<div class="align-self-center mx-auto text-center">
-    <h1 class="title">{% trans "welcome" %}</h1>
-</div>
+    <style>
+    </style>
+    <div class="container mb-5 mt-4">
+        <div class="row justify-content-center rounded-3">
+            <img src="{% static "img/korben_welcome.jpg" %}" alt="korben_welcome" class="rounded-5 shadow-lg"
+                 height="300">
+        </div>
+    </div>
+    <div class="align-self-center mx-auto text-center">
+        <h1 class="title my-4">{% trans "welcome" %}</h1>
+        <div style="font-size: 20px" class="container shadow-lg my-4">
+            <p>Ты попал на замечательный сайт, который хранит цитаты великого контентмейкера танкового болота - <a
+                    href="https://www.youtube.com/@RainBloodRYTP">RainBlood</a></p>
+            <p>Не знаешь, что здесь делать? В первую очередь <a href="/users/signup/">зарегистрируйся</a>. Хоть это и не
+                обязательно, но дает многие преимущества</p>
+            <p>Все цитаты хранятся во вкладке <a href="/search/overview/">«Поиск»</a>, но тут можешь посмотреть на
+                случайные, которые я для тебя выбрал</p>
+            <p>А так, развлекайся, тыкай кнопки, добавляй цитаты. Буду стараться поддерживать сайт и вовремя загружать
+                новые видео</p>
+        </div>
+        <div class="container img-fluid mt-5 img-fluid" style="width: 20%">
+            <div id="QuoteCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    {% for quote in quotes %}
+                        <button type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide-to="{{ forloop.counter|add:-1 }}"
+                                class="active" aria-current="true" aria-label="Slide {{ forloop.counter }}">
+                        </button>
+                    {% endfor %}
+                </div>
+                <div class="carousel-inner">
+                    {% for quote in quotes %}
+                        <div class="carousel-item{% if forloop.first %} active{% endif %} m">
+                            {% include 'includes/quotecard.html' %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#QuoteCarousel"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#QuoteCarousel"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
 {% endblock %}
